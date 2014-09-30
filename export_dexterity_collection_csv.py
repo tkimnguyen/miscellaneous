@@ -2,13 +2,29 @@
 
 Exports a collection as CSV
 
+T. Kim Nguyen <nguyen@uwosh.edu> 2014-09-30
+
 Outputs all the columns selected in the collection, plus all fields in the Dexterity objects returned by the collection.
 
-Warning: respects the collection's limit on the number of returned results, in case you're wondering why this code outputs just (say) 10 rows.
+Warning: respects the collection's limit on the number of returned results, in case you're wondering why this code outputs 
+just (say) 10 rows.
 
 Based on SmartCsvExporterTool.
 
-T. Kim Nguyen <nguyen@uwosh.edu> 2014-09-30
+How to use this: go to ZMI -> portal_skins -> custom and add a new External Method:
+
+    ID: export_as_csv
+    Module Name: export_as_csv
+    Function Name: export_as_csv
+
+To have this "Export as CSV" tab show up on all collections, 
+go to the ZMI -> portal_actions -> object and create a new CMFAction with:
+
+    Title: Export to CSV
+    URL: string:export_as_csv
+    Condition: python: object.Type() == 'Collection'
+    Permissions: View
+    Visible? True
 
 """
 
